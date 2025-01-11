@@ -1,12 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block dashboard_content %}
-<div class="form-container">
+<div class="page-header">
     <h1>Add New Supplier</h1>
-    <form method="post">
+</div>
+
+<div class="form-container">
+    <form method="post" class="supplier-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">Add Supplier</button>
+        
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="name">
+                    <i class="material-icons">person</i>
+                    Name
+                </label>
+                <input type="text" id="name" name="name" required placeholder="Enter supplier name">
+                {% if form.name.errors %}
+                    <div class="error-message">{{ form.name.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    <i class="material-icons">email</i>
+                    Email
+                </label>
+                <input type="email" id="email" name="email" required placeholder="Enter supplier email">
+                {% if form.email.errors %}
+                    <div class="error-message">{{ form.email.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="phone">
+                    <i class="material-icons">phone</i>
+                    Phone
+                </label>
+                <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
+                {% if form.phone.errors %}
+                    <div class="error-message">{{ form.phone.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group full-width">
+                <label for="address">
+                    <i class="material-icons">location_on</i>
+                    Address
+                </label>
+                <textarea id="address" name="address" rows="4" required placeholder="Enter complete address"></textarea>
+                {% if form.address.errors %}
+                    <div class="error-message">{{ form.address.errors.0 }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="material-icons">add</i>
+                Add Supplier
+            </button>
+            <a href="{% url 'supplier_list' %}" class="btn btn-secondary">
+                <i class="material-icons">arrow_back</i>
+                Back to List
+            </a>
+        </div>
     </form>
 </div>
 {% endblock %} 

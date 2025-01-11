@@ -7,59 +7,8 @@
     <title>Inventory Management System</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Add this to your existing styles */
-        .status-badge {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            font-weight: 500;
-        }
-        
-        .status-pending {
-            background-color: #ffd700;
-            color: #000;
-        }
-        
-        .status-completed {
-            background-color: #4CAF50;
-            color: white;
-        }
-        
-        .status-cancelled {
-            background-color: #f44336;
-            color: white;
-        }
-        
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0 4px;
-        }
-        
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
-        
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0 4px;
-        }
-        
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 <body>
     {% if request.path == '/' or request.path == '/login/' or request.path == '/register/' or request.path == '/password_reset/' or request.path == '/password_reset/done/' or 'reset' in request.path %}
@@ -68,26 +17,41 @@
         <div class="container">
             <aside class="sidebar">
                 <div class="logo">
-                    <img src="{% static 'images/inventory.svg' %}" alt="Logo" style="width: 40px; height: 40px;">
-                    <span>Inventory System</span>
+                    <img src="{% static 'images/inventory.svg' %}" alt="Logo">
+                    <span>Stockly</span>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="{% url 'dashboard' %}" class="{% if request.path == '/dashboard/' %}active{% endif %}">
-                            <i class="material-icons">dashboard</i>Dashboard
-                        </a></li>
-                        <li><a href="{% url 'product_list' %}" class="{% if '/products/' in request.path %}active{% endif %}">
-                            <i class="material-icons">inventory_2</i>Products
-                        </a></li>
-                        <li><a href="{% url 'supplier_list' %}" class="{% if '/suppliers/' in request.path %}active{% endif %}">
-                            <i class="material-icons">local_shipping</i>Suppliers
-                        </a></li>
-                        <li><a href="{% url 'sale_order_list' %}" class="{% if '/sales/' in request.path %}active{% endif %}">
-                            <i class="material-icons">shopping_cart</i>Orders
-                        </a></li>
-                        <li><a href="{% url 'check_stock_levels' %}" class="{% if '/stock/' in request.path %}active{% endif %}">
-                            <i class="material-icons">analytics</i>Stock
-                        </a></li>
+                        <li>
+                            <a href="{% url 'dashboard' %}" class="{% if request.path == '/dashboard/' %}active{% endif %}">
+                                <i class="material-icons">dashboard</i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'product_list' %}" class="{% if '/products/' in request.path %}active{% endif %}">
+                                <i class="material-icons">inventory_2</i>
+                                <span>Products</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'supplier_list' %}" class="{% if '/suppliers/' in request.path %}active{% endif %}">
+                                <i class="material-icons">local_shipping</i>
+                                <span>Suppliers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'sale_order_list' %}" class="{% if '/sales/' in request.path %}active{% endif %}">
+                                <i class="material-icons">shopping_cart</i>
+                                <span>Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'check_stock_levels' %}" class="{% if '/stock/' in request.path %}active{% endif %}">
+                                <i class="material-icons">analytics</i>
+                                <span>Stock</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </aside>
@@ -103,9 +67,10 @@
                         <div class="profile">
                             {% if user.is_authenticated %}
                                 <span>{{ user.username }}</span>
-                                <a href="{% url 'logout' %}" class="btn-link">Logout</a>
+                                <a href="{% url 'logout' %}" class="btn-link">
+                                    <i class="material-icons">logout</i>
+                                </a>
                             {% endif %}
-                            <i class="material-icons">arrow_drop_down</i>
                         </div>
                     </div>
                 </header>

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block dashboard_content %}
+<div class="dashboard">
+    <!-- Activity Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="material-icons">inventory_2</i>
+            </div>
+            <h3>₹2,54,890</h3>
+            <p>Inventory Value</p>
+            <span class="trend up">14.6% from last week</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="material-icons">shopping_cart</i>
+            </div>
+            <h3>2,656</h3>
+            <p>Total Orders</p>
+            <span class="trend up">7.54% from last week</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="material-icons">local_shipping</i>
+            </div>
+            <h3>769</h3>
+            <p>New Orders</p>
+            <span class="trend up">1.23% from last week</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="material-icons">check_circle</i>
+            </div>
+            <h3>367</h3>
+            <p>Delivered</p>
+            <span class="trend down">7.87% from last week</span>
+        </div>
+    </div>
+
+    <!-- Sales & Purchase Chart -->
+    <div class="chart-section">
+        <div class="section-header">
+            <h2>Sales & Purchase</h2>
+            <select class="period-select">
+                <option>Week</option>
+                <option>Month</option>
+                <option>Year</option>
+            </select>
+        </div>
+        <div class="chart">
+            <!-- Chart will be added here -->
+        </div>
+    </div>
+
+    <!-- Top Selling Products -->
+    <div class="top-products">
+        <div class="section-header">
+            <h2>Top Selling Products</h2>
+            <select class="period-select">
+                <option>Today</option>
+                <option>Week</option>
+                <option>Month</option>
+            </select>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Orders</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <img src="{% static 'images/product1.jpg' %}" alt="Product">
+                            <span>Grace Accent Chair</span>
+                        </div>
+                    </td>
+                    <td>₹12,799</td>
+                    <td>34</td>
+                    <td>510</td>
+                </tr>
+                <!-- Add more product rows -->
+            </tbody>
+        </table>
+        <div class="pagination">
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>...</span>
+        </div>
+    </div>
+</div>
+{% endblock %} 
