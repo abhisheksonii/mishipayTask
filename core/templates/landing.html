@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="landing-container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Stockly</h1>
+            <p class="hero-subtitle">Your Smart Inventory Management Solution</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}" class="cta-button">Go to Dashboard</a>
+            {% else %}
+                <div class="cta-buttons">
+                    <a href="{% url 'login' %}" class="cta-button">Login</a>
+                    <a href="{% url 'register' %}" class="cta-button secondary">Register</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'images/inventory.svg' %}" alt="Inventory Management">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose Stockly?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-box"></i>
+                <h3>Stock Management</h3>
+                <p>Track your inventory levels in real-time with automated alerts and notifications.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Sales Tracking</h3>
+                <p>Monitor your sales performance and analyze trends with detailed reports.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-truck"></i>
+                <h3>Supplier Management</h3>
+                <p>Manage your suppliers and streamline the procurement process.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-history"></i>
+                <h3>Order History</h3>
+                <p>Keep track of all your past orders and transactions in one place.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>1000+</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-card">
+                <h3>50K+</h3>
+                <p>Orders Processed</p>
+            </div>
+            <div class="stat-card">
+                <h3>99.9%</h3>
+                <p>Uptime</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Get Started?</h2>
+        <p>Join thousands of businesses that trust Stockly for their inventory management needs.</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="cta-button">Go to Dashboard</a>
+        {% else %}
+            <a href="{% url 'register' %}" class="cta-button">Create Free Account</a>
+        {% endif %}
+    </section>
+</div>
+{% endblock %} 

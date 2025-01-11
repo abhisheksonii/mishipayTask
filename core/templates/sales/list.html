@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block dashboard_content %}
+<div class="sales-list">
+    <h1>Sales Orders</h1>
+    {% if products_available %}
+        <a href="{% url 'create_sale_order' %}" class="btn">Create Sale Order</a>
+    {% else %}
+        <div class="alert alert-warning">No products available for sale</div>
+    {% endif %}
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Current Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in sale_orders %}
+            <tr>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>${{ order.total_price }}</td>
+                <td>{{ order.sale_date }}</td>
+                <td>
+                    <span class="status-badge status-{{ order.status }}">
+                        {{ order.status }}
+                    </span>
+                </td>
+                <td>{{ order.product.stock_quantity }}</td>
+                <td>
+                    {% if order.status == 'pending' %}
+                        <a href="{% url 'complete_sale_order' order.id %}" class="btn btn-success">Complete</a>
+                        <a href="{% url 'cancel_sale_order' order.id %}" class="btn btn-danger">Cancel</a>
+                        <a href="#" class="btn btn-danger delete-btn" data-url="{% url 'delete_sale_order' order.id %}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.delete-btn').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            var url = this.getAttribute('data-url');
+            if (confirm('Are you sure you want to delete this sale order? This action cannot be undone.')) {
+                window.location.href = url;
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

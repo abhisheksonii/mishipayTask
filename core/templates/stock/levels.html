@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block dashboard_content %}
+<div class="stock-levels">
+    <h1>Stock Movements</h1>
+    <a href="{% url 'add_stock_movement' %}" class="btn">Add Stock Movement</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Movement Type</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movement in stock_movements %}
+            <tr>
+                <td>{{ movement.product.name }}</td>
+                <td>{{ movement.quantity }}</td>
+                <td>{{ movement.movement_type }}</td>
+                <td>{{ movement.movement_date }}</td>
+                <td>
+                    <button class="btn btn-danger delete-btn" data-url="{% url 'delete_stock_movement' movement.id %}">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block dashboard_content %}
+<div class="product-list">
+    <h1>Products</h1>
+    <a href="{% url 'add_product' %}" class="btn">Add New Product</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Supplier</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ product.stock_quantity }}</td>
+                <td>{{ product.supplier.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>
+                    <a href="{% url 'edit_product' product.id %}" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger delete-btn" data-url="{% url 'delete_product' product.id %}">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block dashboard_content %}
+<div class="form-container">
+    <h1>Add New Supplier</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Add Supplier</button>
+    </form>
+</div>
+{% endblock %} 
